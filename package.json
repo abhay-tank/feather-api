@@ -1,0 +1,29 @@
+{
+  "name": "feathers-api",
+  "version": "1.0.0",
+  "description": "Feathers is a RESTful API backend which provides CRUD operations of Blogs which are stored on MongoDB along with file storage.",
+  "main": "app.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhay-tank/feather-api.git"
+  },
+  "keywords": [
+    "Feathers",
+    "Blogs",
+    "API",
+    "REST",
+    "restful",
+    "mongodb",
+    "atlas",
+    "CRUD"
+  ],
+  "author": "Abhay Tank",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abhay-tank/feather-api/issues"
+  },
+  "homepage": "https://github.com/abhay-tank/feather-api#readme"
+}
