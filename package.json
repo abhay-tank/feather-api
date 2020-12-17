@@ -25,5 +25,15 @@
   "bugs": {
     "url": "https://github.com/abhay-tank/feather-api/issues"
   },
-  "homepage": "https://github.com/abhay-tank/feather-api#readme"
+  "homepage": "https://github.com/abhay-tank/feather-api#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "compression": "^1.7.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.8",
+    "uniqid": "^5.2.0"
+  }
 }
