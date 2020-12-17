@@ -1,0 +1,79 @@
+// Initial Setup
+
+1. Create initial folder structure.
+2. Create express app and attach mongo.
+3. Create authRouter and blogsRouter and add them to app.
+4. Create route endpoints for authController and blogsController.
+5. Create authController and blogsController and add them to app.
+6. Add REST request types to authController and blogsController.
+7. Declare REST request method/handlers inside authController and blogsController.
+8. Define sendSuccessResponse and sendErrorResponse middlewares.
+9. Define ErrorResponse in models.
+
+// For Blogs ("/blogs")
+1. Create Blog schema with fields -
+{
+  blogId,
+  blogAuthor,
+  blogTitle,
+  blogContent,
+  blogImages: [
+    {
+      blogImageId,
+      blogImageAlt, 
+      blogImageURL
+    }
+  ],
+  blogRelatedLinks: [
+    {
+      blogId,
+      blogTitle
+    }
+  ],
+  createdAt,
+  updatedAt
+}
+
+2. Add schema validation.
+// GET ("/")
+3. Define getAllBlogs with default value to 10 or length of blogs collection.
+// POST ("/")
+4. Define createBlog using schema.
+// GET ("/:id")
+5. Define getBlog.
+// PATCH ("/:id")
+6. Define updateBlog.
+// DELETE ("/:id")
+7. Define deleteBlog.
+8. ** If protectRoute is implemented add protectRoute.
+9. ** Add select Request Query and return only selected fields.
+10. ** Add search Request Query.
+11. ** Add limit Request Query and return only needed blogs.
+
+// For Auth ("/auth")
+1. Create User schema with fields -
+{
+  uid,
+  userName,
+  {
+    userAvatarURL,
+    userAvatarAlt
+  },
+  email,
+  password,
+  accountVerified,
+  accountVerificationToken,
+  createdAt,
+  updatedAt
+}
+2. Add schema validation.
+// POST ("/signUp")
+3. Define signUp and send verificationToken.
+// POST ("/signIn")
+4. Define signIn and set JWT.
+// POST ("/signOut")
+5. Define signOut.
+// ** PATCH ("/verifyUserAccount/:verificationToken")
+6. ** Add verifyUserAccount.
+// ** PATCH ("/changePassword/:passwordChangeToken")
+7. ** Add changePassword.
