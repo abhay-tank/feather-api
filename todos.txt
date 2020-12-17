@@ -1,12 +1,12 @@
 // Initial Setup
 
-1. Create initial folder structure.
-2. Create express app and attach mongo.
-3. Create authRouter and blogsRouter and add them to app.
-4. Create route endpoints for authController and blogsController.
-5. Create authController and blogsController and add them to app.
-6. Add REST request types to authController and blogsController.
-7. Declare REST request method/handlers inside authController and blogsController.
+✔️1. Create initial folder structure.
+✔️2. Create express app and attach mongo.
+✔️3. Create authRouter and blogsRouter and add them to app.
+✔️4. Create route endpoints for authController and blogsController.
+✔️5. Create authController and blogsController and add them to app.
+✔️6. Add REST request types to authController and blogsController.
+✔️7. Declare REST request method/handlers inside authController and blogsController.
 8. Define sendSuccessResponse and sendErrorResponse middlewares.
 9. Define ErrorResponse in models.
 
