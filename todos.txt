@@ -38,7 +38,7 @@
 // GET ("/")
 3. Define getAllBlogs with default value to 10 or length of blogs collection.
 // POST ("/")
-4. Define createBlog using schema.
+✔️4. Define createBlog using schema.
 // GET ("/:id")
 5. Define getBlog.
 // PATCH ("/:id")
@@ -80,3 +80,6 @@ __ Add relatedBlogTitle in pre("save").
 7. ** Add verifyUserAccount.
 // ** PATCH ("/changePassword/:passwordChangeToken")
 8. ** Add changePassword.
+
+// Postponed tasks
+1. Check if no blog images are passed.
