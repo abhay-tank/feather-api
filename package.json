@@ -4,7 +4,9 @@
   "description": "Feathers is a RESTful API backend which provides CRUD operations of Blogs which are stored on MongoDB along with file storage.",
   "main": "app.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "dev": "nodemon app.js",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +36,7 @@
     "helmet": "^4.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.8",
+    "multer": "^1.4.2",
     "uniqid": "^5.2.0"
   }
 }

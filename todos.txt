@@ -11,7 +11,7 @@
 ✔️9. Define ErrorResponse in models.
 
 // For Blogs ("/blogs")
-1. Create Blog schema with fields -
+✔️1. Create Blog schema with fields -
 {
   blogId,
   blogAuthor,
@@ -34,7 +34,7 @@
   updatedAt
 }
 
-2. Add schema validation.
+✔️2. Add schema validation.
 // GET ("/")
 3. Define getAllBlogs with default value to 10 or length of blogs collection.
 // POST ("/")
@@ -49,6 +49,8 @@
 9. ** Add select Request Query and return only selected fields.
 10. ** Add search Request Query.
 11. ** Add limit Request Query and return only needed blogs.
+__ Add relatedBlogTitle in pre("save").
+
 
 // For Auth ("/auth")
 1. Create User schema with fields -
@@ -73,7 +75,8 @@
 4. Define signIn and set JWT.
 // POST ("/signOut")
 5. Define signOut.
+6. Define protectRoute.
 // ** PATCH ("/verifyUserAccount/:verificationToken")
-6. ** Add verifyUserAccount.
+7. ** Add verifyUserAccount.
 // ** PATCH ("/changePassword/:passwordChangeToken")
-7. ** Add changePassword.
+8. ** Add changePassword.
