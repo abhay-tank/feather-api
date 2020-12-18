@@ -11,7 +11,7 @@ const {
 } = require("../controllers/authController");
 authRouter
 	.route("/signUp")
-	.post(createUserId, userAvatarUpload.single("userAvatar"), signUp);
+	.post(createUserId, userAvatarUpload.single("avatarImage"), signUp);
 authRouter.route("/signIn").post(signIn);
 authRouter.route("/signOut").post(signOut);
 authRouter
