@@ -1,5 +1,5 @@
 const express = require("express");
-const upload = require("../configuration/multerConfig");
+const upload = require("../middlewares/multerUpload");
 const blogsRouter = express.Router();
 const {
   getBlogs,
