@@ -28,7 +28,6 @@ const blogSchema = new mongoose.Schema(
         blogImageId: {
           type: String,
           default: "img" + uniqid(),
-          unique: true,
         },
         blogImageAlt: {
           type: String,

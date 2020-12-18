@@ -8,8 +8,6 @@ const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     let picDirectory;
     if (req.path != "/signUp") {
-      let newBlogId = uniqid();
-      req.body.blogId = newBlogId;
       picDirectory = path.join(
         __dirname,
         "..",
@@ -17,7 +15,7 @@ const storage = multer.diskStorage({
         "..",
         config.RESOURCES,
         config.BLOG_IMAGES,
-        newBlogId
+        req.headers.blogId
       );
     } else {
       picDirectory = path.join(

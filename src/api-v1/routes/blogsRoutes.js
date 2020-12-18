@@ -8,11 +8,11 @@ const {
   updateBlog,
   deleteBlog,
 } = require("../controllers/blogsController");
-
+const createBlogId = require("../middlewares/createBlogId");
 blogsRouter
   .route("/")
   .get(getBlogs)
-  .post(upload.array("blogImages", 10), createBlog);
+  .post(createBlogId, upload.array("blogImages", 10), createBlog);
 blogsRouter.route("/:id").get(getBlog).patch(updateBlog).delete(deleteBlog);
 
 module.exports = blogsRouter;
