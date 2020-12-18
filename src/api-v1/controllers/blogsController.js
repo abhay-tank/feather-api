@@ -34,14 +34,14 @@ const createBlog = (req, res) => {
       res
     );
   }
-  const newBlogBody = {
+  const newBlog = new Blog({
     blogId: req.body.blogId,
     blogAuthor: req.body.blogAuthor,
     blogTitle: req.body.blogTitle,
     blogContent: req.body.blogContent,
     blogImages: blogImages,
-  };
-  const newBlog = new Blog(newBlogBody);
+    blogRelatedLinks: JSON.parse(req.body.blogRelatedLinks),
+  });
   newBlog
     .save()
     .then((result) => {
@@ -62,7 +62,7 @@ const createBlog = (req, res) => {
     .catch((err) => {
       console.error(err);
       sendErrorResponse(
-        new ErrorResponse(500, "unsuccessful", "Error saving blog"),
+        new ErrorResponse(400, "unsuccessful", err.toString()),
         res
       );
     });

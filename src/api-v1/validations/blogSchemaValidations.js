@@ -1,8 +1,7 @@
 const Blog = require("../models/Blog");
-
+const mongoose = require("mongoose");
 async function validateRelatedBlogId() {
-  console.log("Inside validateRelatedBlogID", this);
-  return false;
+  return await mongoose.model("Blog").exists({ blogId: this.relatedBlogId });
 }
 
 module.exports = {

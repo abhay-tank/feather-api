@@ -47,7 +47,7 @@ const blogSchema = new mongoose.Schema(
           required: true,
           validate: {
             validator: validateRelatedBlogId,
-            message: "Invalid input for relatedBlogId",
+            message: "Invalid input for relatedBlogId or blog not found",
           },
         },
         relatedBlogTitle: {

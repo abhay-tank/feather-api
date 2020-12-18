@@ -49,7 +49,6 @@
 9. ** Add select Request Query and return only selected fields.
 10. ** Add search Request Query.
 11. ** Add limit Request Query and return only needed blogs.
-__ Add relatedBlogTitle in pre("save").
 
 
 // For Auth ("/auth")
