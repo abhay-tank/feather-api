@@ -76,14 +76,6 @@ https://kipplist.herokuapp.com/
 /blogs
 ```
 
-A simple **GET** request on /todos will return all todos in database.
-
-```
-/blogs/:id
-```
-
-**GET** request on /todos with specified id in params will return todos with specific id.
-
 ```
 /blogs/?limit=5
 ```
@@ -95,6 +87,18 @@ A simple **GET** request on /todos will return all todos in database.
 ```
 /blogs/?limit=5&select=blogAuthor+blogContent
 ```
+
+A simple **GET** request on /todos will return all todos in database.
+
+```
+/blogs/:id
+```
+
+```
+/blogs/:id?select=blogAuthor+blogContent
+```
+
+**GET** request on /todos with specified id in params will return todos with specific id.
 
 ### POST - Create new Blog 💾
 

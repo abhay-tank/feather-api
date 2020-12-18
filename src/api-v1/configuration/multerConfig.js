@@ -1,13 +1,12 @@
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
-const uniqid = require("uniqid");
 const { config } = require("./config");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     let picDirectory;
-    if (req.path != "/signUp") {
+    if (req.route.path == "/") {
       picDirectory = path.join(
         __dirname,
         "..",
@@ -17,6 +16,24 @@ const storage = multer.diskStorage({
         config.BLOG_IMAGES,
         req.headers.blogId
       );
+    } else if (req.route.path == "/:id") {
+      picDirectory = path.join(
+        __dirname,
+        "..",
+        "..",
+        "..",
+        config.RESOURCES,
+        config.BLOG_IMAGES,
+        req.params.id
+      );
+      try {
+        const oldPics = fs.readdirSync(picDirectory);
+        oldPics.forEach((pic) => {
+          fs.rmSync(path.join(picDirectory, pic));
+        });
+      } catch (error) {
+        console.error(error);
+      }
     } else {
       picDirectory = path.join(
         __dirname,
