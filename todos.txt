@@ -3,6 +3,7 @@ Notations I follow -
 ❌ || _blank - not implemented.
 🤔 - optional.
 ⚠️ - postponed or needs attention.
+🛑 - MUST BE RESOLVED.
 
 // Initial Setup
 
@@ -42,7 +43,7 @@ Notations I follow -
 
 ✔️2. Add schema validation.
 // GET ("/")
-3. Define getAllBlogs with default value to 10 or length of blogs collection.
+✔️3. Define getAllBlogs with default value to 10 or length of blogs collection.
 // POST ("/")
 ✔️4. Define createBlog using schema.
 // GET ("/:id")
@@ -52,11 +53,12 @@ Notations I follow -
 // DELETE ("/:id")
 7. Define deleteBlog.
 8. If protectRoute is implemented add protectRoute.
-🤔9. Add select Request Query and return only selected fields.
+✔️9. Add select Request Query and return only selected fields.
 🤔10. Add search Request Query.
-🤔11. Add limit Request Query and return only needed blogs.
-⚠️12. Test for blogImagesEmpty array. Define validation for blogImages.
-⚠️13. Test for blogRelatedLinks array. Define validation for blogRelatedLinks.
+✔️11. Add limit Request Query and return only needed blogs.
+✔️12. Test for blogImagesEmpty array. Define validation for blogImages.
+✔️13. Test for blogRelatedLinks array. Define validation for blogRelatedLinks.
+✔️14. While parsing data in createBlog if error generates sendErrorResponse.
 
 
 // For Auth ("/auth")

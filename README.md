@@ -84,6 +84,18 @@ A simple **GET** request on /todos will return all todos in database.
 
 **GET** request on /todos with specified id in params will return todos with specific id.
 
+```
+/blogs/?limit=5
+```
+
+```
+/blogs/?select=blogAuthor+blogContent
+```
+
+```
+/blogs/?limit=5&select=blogAuthor+blogContent
+```
+
 ### POST - Create new Blog 💾
 
 ```
@@ -109,7 +121,7 @@ blogRelatedLinks: String[
   ]
 ```
 
-****Since we are requesting in the form of Form-data we cannot pass blogRelatedLinks as array. Stringify ****
+\***\*Since we are requesting in the form of Form-data we cannot pass blogRelatedLinks as array. Stringify \*\***
 
 ### PATCH - Update Blog ⚙️
 
