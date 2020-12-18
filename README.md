@@ -13,7 +13,7 @@ https://kipplist.herokuapp.com/
 ## Auth 🔐
 
 <p align="center">
-  <img src="https://media.giphy.com/media/81xwEHX23zhvy/giphy.gif">
+  <img src="https://media1.tenor.com/images/558c960cc4774a862e7ec8edd3575db3/tenor.gif?itemid=8686676">
 </p>
 
 ```
