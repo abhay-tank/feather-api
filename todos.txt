@@ -1,3 +1,9 @@
+Notations I follow - 
+✔️ - implemented,
+❌ || _blank - not implemented.
+🤔 - optional.
+⚠️ - postponed or needs attention.
+
 // Initial Setup
 
 ✔️1. Create initial folder structure.
@@ -45,10 +51,12 @@
 6. Define updateBlog.
 // DELETE ("/:id")
 7. Define deleteBlog.
-8. ** If protectRoute is implemented add protectRoute.
-9. ** Add select Request Query and return only selected fields.
-10. ** Add search Request Query.
-11. ** Add limit Request Query and return only needed blogs.
+8. If protectRoute is implemented add protectRoute.
+🤔9. Add select Request Query and return only selected fields.
+🤔10. Add search Request Query.
+🤔11. Add limit Request Query and return only needed blogs.
+⚠️12. Test for blogImagesEmpty array. Define validation for blogImages.
+⚠️13. Test for blogRelatedLinks array. Define validation for blogRelatedLinks.
 
 
 // For Auth ("/auth")
@@ -75,10 +83,7 @@
 // POST ("/signOut")
 5. Define signOut.
 6. Define protectRoute.
-// ** PATCH ("/verifyUserAccount/:verificationToken")
-7. ** Add verifyUserAccount.
-// ** PATCH ("/changePassword/:passwordChangeToken")
-8. ** Add changePassword.
-
-// Postponed tasks
-1. Check if no blog images are passed.
+🤔 // ** PATCH ("/verifyUserAccount/:verificationToken")
+🤔  7. ** Add verifyUserAccount.
+🤔 // ** PATCH ("/changePassword/:passwordChangeToken")
+🤔  8. ** Add changePassword.
