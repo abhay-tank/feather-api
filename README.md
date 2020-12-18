@@ -130,7 +130,11 @@ blogRelatedLinks: String[
 ### PATCH - Update Blog ⚙️
 
 ```
-/blogs:id
+/blogs/:id
+```
+
+```
+/blogs/:id?select=blogAuthor+blogContent
 ```
 
 **PATCH** request with specified id in params and request body with specified key value will update specified Blog.

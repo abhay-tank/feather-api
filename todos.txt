@@ -47,11 +47,11 @@ Notations I follow -
 // POST ("/")
 ✔️4. Define createBlog using schema.
 // GET ("/:id")
-5. Define getBlog.
+✔️5. Define getBlog.
 // PATCH ("/:id")
-6. Define updateBlog.
+✔️6. Define updateBlog.
 // DELETE ("/:id")
-7. Define deleteBlog.
+✔️7. Define deleteBlog.
 8. If protectRoute is implemented add protectRoute.
 ✔️9. Add select Request Query and return only selected fields.
 🤔10. Add search Request Query.

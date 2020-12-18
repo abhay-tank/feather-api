@@ -252,6 +252,33 @@ const updateBlog = (req, res) => {
 };
 
 // DELETE:id
-const deleteBlog = (req, res) => {};
+const deleteBlog = (req, res) => {
+  let selectQuery = "-_id";
+  if (req.query.select) {
+    req.query.select.split(" ").forEach((property) => {
+      if (validBlogKeys.includes(property) && property != "_id") {
+        selectQuery += " " + property;
+      }
+    });
+  }
+  Blog.findOneAndDelete({ blogId: req.params.id })
+    .select(selectQuery)
+    .then((result) => {
+      if (!result) {
+        return sendErrorResponse(
+          new ErrorResponse(404, "unsuccessful", "Blog not found"),
+          res
+        );
+      }
+      return sendSuccessResponse(200, "successful", result, res);
+    })
+    .catch((err) => {
+      console.error(err);
+      return sendErrorResponse(
+        new ErrorResponse(500, "unsuccessful", err.toString()),
+        res
+      );
+    });
+};
 
 module.exports = { getBlogs, createBlog, getBlog, updateBlog, deleteBlog };
