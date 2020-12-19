@@ -59,10 +59,11 @@ Notations I follow -
 ✔️12. Test for blogImagesEmpty array. Define validation for blogImages.
 ✔️13. Test for blogRelatedLinks array. Define validation for blogRelatedLinks.
 ✔️14. While parsing data in createBlog if error generates sendErrorResponse.
+⚠️15. Check images file extension.
 
 
 // For Auth ("/auth")
-1. Create User schema with fields -
+✔️1. Create User schema with fields -
 {
   uid,
   userName,
@@ -77,15 +78,17 @@ Notations I follow -
   createdAt,
   updatedAt
 }
-2. Add schema validation.
+✔️2. Add schema validation.
 // POST ("/signUp")
-3. Define signUp and send verificationToken.
+✔️3. Define signUp.
 // POST ("/signIn")
 4. Define signIn and set JWT.
 // POST ("/signOut")
 5. Define signOut.
 6. Define protectRoute.
-🤔 // ** PATCH ("/verifyUserAccount/:verificationToken")
-🤔  7. ** Add verifyUserAccount.
-🤔 // ** PATCH ("/changePassword/:passwordChangeToken")
-🤔  8. ** Add changePassword.
+✔️ 7. Send verificationToken.
+🤔 // PATCH ("/verifyUserAccount/:verificationToken")
+🤔 8. Add verifyUserAccount.
+🤔 // PATCH ("/changePassword/:passwordChangeToken")
+🤔 9. Add changePassword.
+⚠️ 10. Check images file extension.
