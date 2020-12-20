@@ -293,7 +293,6 @@ blogRelatedLinks:
 ├── resources
 │   ├── blogs
 │   └── users
-│
 ├── src
 │   └── api-v1
 │       ├── configuration
