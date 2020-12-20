@@ -35,15 +35,39 @@ https://kipplist.herokuapp.com/
 - A mixture of letters and numbers.
 - Inclusion of at least one special character from [!, @, #, $, %, ^, &, *]
 
+### Use form-data
+
+```
+blogAuthor: Jon Doe
+
+blogTitle: Jon Doe's Life
+
+blogContent: "Jon Doe" and "Jane Doe" (for females) are multiple-use names that are used when the true name of a person is unknown or is being intentionally concealed.
+
+blogImages: [Upload Image Files]
+
+blogRelatedLinks:
+[
+  {
+    "relatedBlogId":  "blog-some_blog_id",
+    "relatedBlogTitle": "Some other awesome blog"
+  }
+]
+
+```
+
+Since we're using `form-data` to take input, `form-data` only supports files and text input. If we want to send related links array inside blog, we need to send blogRelatedLinks array as `JSON Array` as text which will be parsed when blog will be created. `JSON Array` must contain relatedLink object as shown below.
+
 ```json
 {
-  "firstName": "Jon",
-  "lastName": "Doe",
-  "email": "jondoe@mail.com",
-  "password": "JonDoee@123",
-  "confirmPassword": "JonDoee@123"
+  "relatedBlogId": "blog-31jnfd2akiupg4k5",
+  "relatedBlogTitle": "Some other awesome blog"
 }
 ```
+
+<center>
+![create-blog](./readme-assets/create-blog.png)
+</center>
 
 #### POST - SignIn 🧐
 
