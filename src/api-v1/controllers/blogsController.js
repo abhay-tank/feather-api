@@ -36,24 +36,25 @@ const getBlogs = async (req, res) => {
 		.select(selectQuery)
 		.then((result) => {
 			if (!result) {
-				sendErrorResponse(
-					new ErrorResponse(404, "unsuccessful", "Blogs not present"),
-					res
-				);
+				throw new ErrorResponse(404, "unsuccessful", "Blogs not present");
 			} else {
 				sendSuccessResponse(200, "successful", result, res);
 			}
 		})
 		.catch((err) => {
 			console.error(err);
-			sendErrorResponse(
-				new ErrorResponse(
-					500,
-					"unsuccessful",
-					`Error fetching blogs: ${err.toString}`
-				),
-				res
-			);
+			if (err instanceof ErrorResponse) {
+				sendErrorResponse(err, res);
+			} else {
+				sendErrorResponse(
+					new ErrorResponse(
+						500,
+						"unsuccessful",
+						`Error fetching blogs: ${err.toString}`
+					),
+					res
+				);
+			}
 		});
 };
 
@@ -120,10 +121,7 @@ const createBlog = (req, res) => {
 		.save()
 		.then((result) => {
 			if (!result) {
-				sendErrorResponse(
-					new ErrorResponse(500, "unsuccessful", "Error saving blog"),
-					res
-				);
+				throw new ErrorResponse(500, "unsuccessful", "Error saving blog");
 			} else {
 				const showKeys = [
 					"blogId",
@@ -145,10 +143,14 @@ const createBlog = (req, res) => {
 		})
 		.catch((err) => {
 			console.error(err);
-			sendErrorResponse(
-				new ErrorResponse(400, "unsuccessful", err.toString()),
-				res
-			);
+			if (err instanceof ErrorResponse) {
+				return sendErrorResponse(err, res);
+			} else {
+				return sendErrorResponse(
+					new ErrorResponse(500, "unsuccessful", err.toString()),
+					res
+				);
+			}
 		});
 };
 
@@ -166,18 +168,19 @@ const getBlog = (req, res) => {
 		.select(selectQuery)
 		.then((result) => {
 			if (!result) {
-				return sendErrorResponse(
-					new ErrorResponse(404, "unsuccessful", "Blog not found"),
-					res
-				);
+				throw new ErrorResponse(404, "unsuccessful", "Blog not found");
 			}
 			return sendSuccessResponse(200, "successful", result, res);
 		})
 		.catch((err) => {
-			return sendErrorResponse(
-				new ErrorResponse(500, "unsuccessful", err.toString()),
-				res
-			);
+			if (err instanceof ErrorResponse) {
+				return sendErrorResponse(err, res);
+			} else {
+				return sendErrorResponse(
+					new ErrorResponse(500, "unsuccessful", err.toString()),
+					res
+				);
+			}
 		});
 };
 
@@ -248,18 +251,19 @@ const updateBlog = (req, res) => {
 		.select(selectQuery)
 		.then((result) => {
 			if (!result) {
-				return sendErrorResponse(
-					new ErrorResponse(404, "unsuccessful", "Blog not found"),
-					res
-				);
+				throw new ErrorResponse(404, "unsuccessful", "Blog not found");
 			}
 			return sendSuccessResponse(200, "successful", result, res);
 		})
 		.catch((err) => {
-			return sendErrorResponse(
-				new ErrorResponse(500, "unsuccessful", err.toString()),
-				res
-			);
+			if (err instanceof ErrorResponse) {
+				return sendErrorResponse(err, res);
+			} else {
+				return sendErrorResponse(
+					new ErrorResponse(500, "unsuccessful", err.toString()),
+					res
+				);
+			}
 		});
 };
 
@@ -286,10 +290,14 @@ const deleteBlog = (req, res) => {
 		})
 		.catch((err) => {
 			console.error(err);
-			return sendErrorResponse(
-				new ErrorResponse(500, "unsuccessful", err.toString()),
-				res
-			);
+			if (err instanceof ErrorResponse) {
+				return sendErrorResponse(err, res);
+			} else {
+				return sendErrorResponse(
+					new ErrorResponse(500, "unsuccessful", err.toString()),
+					res
+				);
+			}
 		});
 };
 
