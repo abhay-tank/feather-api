@@ -52,7 +52,7 @@ Notations I follow -
 ✔️6. Define updateBlog.
 // DELETE ("/:id")
 ✔️7. Define deleteBlog.
-8. If protectRoute is implemented add protectRoute.
+✔️8. If protectRoute is implemented add protectRoute.
 ✔️9. Add select Request Query and return only selected fields.
 🤔10. Add search Request Query.
 ✔️11. Add limit Request Query and return only needed blogs.
@@ -82,13 +82,13 @@ Notations I follow -
 // POST ("/signUp")
 ✔️3. Define signUp.
 // POST ("/signIn")
-4. Define signIn and set JWT.
+✔️4. Define signIn and set JWT.
 // POST ("/signOut")
-5. Define signOut.
-6. Define protectRoute.
+✔️5. Define signOut.
+✔️6. Define protectRoute.
 ✔️ 7. Send verificationToken.
-🤔 // PATCH ("/verifyUserAccount/:verificationToken")
-🤔 8. Add verifyUserAccount.
+✔️ // PATCH ("/verifyUserAccount/:verificationToken")
+✔️ 8. Add verifyUserAccount.
 🤔 // PATCH ("/changePassword/:passwordChangeToken")
 🤔 9. Add changePassword.
 ⚠️ 10. Check images file extension.

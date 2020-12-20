@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema(
     userId: {
       type: String,
       unique: true,
+      index: true,
     },
     firstName: {
       type: String,
@@ -22,6 +23,7 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       unique: true,
+      index: true,
       required: [true, "Email is Mandatory"],
       validate: {
         validator: validateEmailFormat,
@@ -48,7 +50,7 @@ const userSchema = new mongoose.Schema(
       validate: {
         validator: validatePasswordFormat,
         message:
-          "Password must be combination of lowercase alphabets, uppercase alphabets, numbers and symbols out of  ",
+          "Password must be combination of lowercase alphabets, uppercase alphabets, numbers and symbols out of !, @, #, $, %, ^, &, * ",
       },
     },
     accountVerified: {
@@ -71,6 +73,22 @@ const userSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+userSchema.statics.isEmailValid = function (email) {
+  return validateEmailFormat(email);
+};
+
+userSchema.statics.isPasswordValid = function (password) {
+  this.password = password;
+  return validatePasswordFormat(password);
+};
+
+userSchema.statics.comparePasswords = async function (
+  hashedPassword,
+  plainPassword
+) {
+  return await bcrypt.compare(plainPassword, hashedPassword);
+};
 
 // Hash User password before saving
 userSchema.pre("save", async function (next) {
