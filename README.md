@@ -66,7 +66,7 @@ Since we're using `form-data` to take input, `form-data` only supports files and
 ```
 
 <center>
-![create-blog](./readme-assets/create-blog.png)
+![create-blog](readme-assets/create-blog.png)
 </center>
 
 #### POST - SignIn 🧐
