@@ -212,8 +212,8 @@ Since we're using `form-data` to take input, `form-data` only supports files and
 
 ```json
 {
-  "relatedBlogId": "blog-31jnfd2akiupg4k5",
-  "relatedBlogTitle": "Some other awesome blog"
+	"relatedBlogId": "blog-31jnfd2akiupg4k5",
+	"relatedBlogTitle": "Some other awesome blog"
 }
 ```
 
@@ -290,32 +290,41 @@ blogRelatedLinks:
 ├── package.json
 ├── package-lock.json
 ├── README.md
-└── src
-    ├── configuration
-    │   └── config.js
-    ├── controllers
-    │   ├── authController.js
-    │   └── todoController.js
-    ├── data
-    │   └── db.json
-    ├── helpers
-    │   ├── hashString.js
-    │   └── jwtTokenFunctions.js
-    ├── middlewares
-    │   ├── protectRoute.js
-    │   ├── responses
-    │   │   ├── errorResponse.js
-    │   │   └── successResponse.js
-    │   └── validations
-    │       ├── authValidations.js
-    │       └── todoValidations.js
-    ├── models
-    │   ├── ErrorResponse.js
-    │   ├── Todo.js
-    │   └── User.js
-    └── routes
-        ├── authRoutes.js
-        └── todoRoutes.js`
+├── resources
+│   ├── blogs
+│   └── users
+│
+├── src
+│   └── api-v1
+│       ├── configuration
+│       │   └── config.js
+│       ├── controllers
+│       │   ├── authController.js
+│       │   └── blogsController.js
+│       ├── helpers
+│       │   ├── jwtFunctions.js
+│       │   └── sendVerificationEmail.js
+│       ├── middlewares
+│       │   ├── authIsUserSignedIn.js
+│       │   ├── createBlogId.js
+│       │   ├── createUserId.js
+│       │   ├── protectRoute.js
+│       │   ├── responses
+│       │   │   ├── sendErrorResponse.js
+│       │   │   └── sendSuccessResponse.js
+│       │   ├── uploadBlogImages.js
+│       │   └── uploadUserAvatarImage.js
+│       ├── models
+│       │   ├── Blog.js
+│       │   ├── ErrorResponse.js
+│       │   └── User.js
+│       ├── routes
+│       │   ├── authRoutes.js
+│       │   └── blogsRoutes.js
+│       └── validations
+│           ├── blogSchemaValidations.js
+│           └── userSchemaValidations.js
+└── todos.txt
 ```
 
 <br><br>
