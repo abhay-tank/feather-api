@@ -60,11 +60,11 @@ avatarImage: avatar.png
 
 ### **After Sign up** ❕❕❕
 
-- ### A verification mail will be sent to user on his/her email address
-- ### User will be **not allowed** to **sign in** if he/she has not visited the **verification link** sent to him/her by Verification email.
-- ### For testing purpose use [temp mails](https://temp-mail.org/en/).
-- ### Once user has visited the Verification URL, his/her token will be verified and `accountVerified` will be toggled to `true`.
-- ### Gmail by default supports only inline styling of Email template. Use other email services to generate output as below.
+- #### A verification mail will be sent to user on his/her email address
+- #### User will be **not allowed** to **sign in** if he/she has not visited the **verification link** sent to him/her by Verification email.
+- #### For testing purpose use [temp mails](https://temp-mail.org/en/).
+- #### Once user has visited the Verification URL, his/her token will be verified and `accountVerified` will be toggled to `true`.
+- #### Gmail by default supports only inline styling of Email template. Use other email services to generate output as below.
 
 <p align="center">
   <img style="margin:2rem 0" src="readme-assets/verification-email.png"></img>
@@ -213,8 +213,8 @@ Since we're using `form-data` to take input, `form-data` only supports files and
 
 ```json
 {
-	"relatedBlogId": "blog-31jnfd2akiupg4k5",
-	"relatedBlogTitle": "Some other awesome blog"
+  "relatedBlogId": "blog-31jnfd2akiupg4k5",
+  "relatedBlogTitle": "Some other awesome blog"
 }
 ```
 
