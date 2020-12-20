@@ -20,7 +20,7 @@ https://kipplist.herokuapp.com/
 /auth
 ```
 
-#### POST - SignUp 😎✨
+# POST - SignUp 😎✨
 
 ```
 /auth/signUp
@@ -35,7 +35,9 @@ https://kipplist.herokuapp.com/
 - A mixture of letters and numbers.
 - Inclusion of at least one special character from [!, @, #, $, %, ^, &, *]
 
-### Use form-data
+### Use form-data to send request.
+
+`key : value`
 
 ```
 blogAuthor: Jon Doe
@@ -67,11 +69,19 @@ Since we're using `form-data` to take input, `form-data` only supports files and
 
 #### POSTMAN Request Example
 
-<p align="center" style="margin: 2rem 0">
+<p align="center">
   <img style="margin:2rem 0" src="readme-assets/create-blog.png"></img>
 </p>
 
-#### POST - SignIn 🧐
+## After Sign up ❕❕❕
+
+- ### A verification mail will be sent to user on his/her email address
+- ### User will be **not allowed** to **sign in** if he/she has not visited the **verification link** sent to him/her by Verification email.
+- ### For testing purpose use [temp mails](https://temp-mail.org/en/).
+- ### Once user has visited the Verification URL, his/her token will be verified and `accountVerified` will be toggled to `true`.
+  <br><br>
+
+# POST - SignIn 🧐
 
 ```
 /auth/signIn
@@ -86,35 +96,52 @@ Since we're using `form-data` to take input, `form-data` only supports files and
 }
 ```
 
-## Blogs
+<br><br><br>
+
+# Blogs
 
 <p align="center" style="margin: 2rem 0">
   <img src="readme-assets/blogs-banner.gif" alt="blog-banner">
 </p>
 
-- ##### For operations with todo endpoint, request header 🔑 must be present with Bearer Token as `authorization` generated using JWT token assigned to user upon signIn.
-- ##### This can be done by setting Bearer Token inside `authorization` of `req.headers`.
-- ##### If using Postman learn how to set JWT token as Bearer token inside Request header from [here](https://medium.com/@iroshan.du/set-bearer-token-as-environment-variable-in-postman-for-all-apis-13277e3ebd78).
+- ### For operations with `/blogs` endpoint, request header 🔑 must be present with `Bearer Token` as _authorization_ generated using JWT token assigned to user upon signIn.
+- ### This can be done by setting Bearer Token inside `authorization` of `req.headers`.
+- ### If using Postman learn how to set JWT token as Bearer token inside Request header from [here](https://medium.com/@iroshan.du/set-bearer-token-as-environment-variable-in-postman-for-all-apis-13277e3ebd78).
 
-### GET - Fetch Blogs 📀
+<br><br>
+
+# GET - Fetch Blogs 💿
+
+A simple **GET** request on `/blogs` will fetch by default upto 10 blogs from database.
 
 ```
 /blogs
 ```
 
+<br>
+
 ```
 /blogs/?limit=5
 ```
+
+`limit` can be used to fetch **`N`** number of blogs.
+<br><br>
 
 ```
 /blogs/?select=blogAuthor+blogContent
 ```
 
+`select` query can be used to fetch only specified data.
+<br><br>
+
 ```
 /blogs/?limit=5&select=blogAuthor+blogContent
 ```
 
-A simple **GET** request on /todos will return all todos in database.
+Both features can be used in combination as above.
+<br><br><br>
+
+## Get Blog by blogId
 
 ```
 /blogs/:id
@@ -124,9 +151,10 @@ A simple **GET** request on /todos will return all todos in database.
 /blogs/:id?select=blogAuthor+blogContent
 ```
 
-**GET** request on /todos with specified id in params will return todos with specific id.
+**GET** request on `/blogs/:id` with specified id as params will return blog with specific id.
+<br><br>
 
-### POST - Create new Blog 💾
+# POST - Create new Blog 💾
 
 ```
 /blogs
@@ -134,46 +162,91 @@ A simple **GET** request on /todos will return all todos in database.
 
 **POST** request with valid request body will create new Blog.
 
-##### **todoTitle and todoContent are required\***
+### **`blogAuthor`, `blogTitle` and `blogContent` are required.**
 
-#### Request Body - Type form-data
+### Use form-data to send request.
+
+`key : value`
 
 ```
-blogAuthor : String
-blogTitle : String
-blogContent: String
-blogImages[] : Files
-blogRelatedLinks: String[
-    {
-      "relatedBlogId": "blogId",
-      "relatedBlogTitle": "blogTitle"
-    }
-  ]
+blogAuthor: Jon Doe
+
+blogTitle: Jon Doe's Life
+
+blogContent: Some Jon Doe's happy life.
+
+blogImages: [Upload Image Files]
+
+blogRelatedLinks:
+[
+  {
+    "relatedBlogId":  "blog-some_blog_id",
+    "relatedBlogTitle": "Some other awesome blog"
+  }
+]
+
 ```
 
-\***\*Since we are requesting in the form of Form-data we cannot pass blogRelatedLinks as array. Stringify \*\***
+Since we're using `form-data` to take input, `form-data` only supports files and text input. If we want to send related links array inside blog, we need to send blogRelatedLinks array as `JSON Array` as text which will be parsed when blog will be created. `JSON Array` must contain relatedLink object as shown below.
 
-### PATCH - Update Blog ⚙️
+```json
+{
+  "relatedBlogId": "blog-31jnfd2akiupg4k5",
+  "relatedBlogTitle": "Some other awesome blog"
+}
+```
+
+#### POSTMAN Request Example
+
+<p align="center">
+  <img style="margin:2rem 0" src="readme-assets/create-blog.png"></img>
+</p>
+
+# PATCH - Update Blog ⚙️
 
 ```
 /blogs/:id
 ```
 
+**PATCH** request with specified id in params and request body with specified key value will update specified Blog.
+
+Related links and images will be **overwritten** if older links/files are not provided.
+
+### Use form-data to send request.
+
+`key : value`
+
+```
+blogTitle: Jon Doe's new Life
+
+blogContent: Some Jon Doe's happy new life.
+
+blogImages: [Upload Image Files]
+
+blogRelatedLinks:
+[
+  {
+    "relatedBlogId":  "blog-some_blog_id",
+    "relatedBlogTitle": "Some other awesome blog"
+  }
+]
+
+```
+
+#### POSTMAN Request Example
+
+<p align="center">
+  <img style="margin:2rem 0" src="readme-assets/update-blog.png"></img>
+</p>
+
 ```
 /blogs/:id?select=blogAuthor+blogContent
 ```
 
-**PATCH** request with specified id in params and request body with specified key value will update specified Blog.
+`select` query can be used to fetch only specified data.
+<br><br><br>
 
-```json
-{
-  "todoTitle": "PATCH Req",
-  "todoContent": "Will update Todo",
-  "todoCompleted": true / false
-}
-```
-
-#### DELETE - Delete Blog ❌
+# DELETE - Delete Blog ❌
 
 **DELETE** request with specified id will delete the Blog from database.
 
@@ -181,7 +254,9 @@ blogRelatedLinks: String[
 /blogs/:id
 ```
 
-### Directory Tree
+<br><br>
+
+# Project Structure 📁
 
 ```
 .
@@ -219,9 +294,11 @@ blogRelatedLinks: String[
         └── todoRoutes.js`
 ```
 
-### Installation
+<br><br>
 
-#### Kipplist requires [Node.js](https://nodejs.org/) v12+ to run.
+# Installation
+
+#### Feather API requires [Node.js](https://nodejs.org/) v12+ to run.
 
 Install the dependencies and devDependencies and start the server.
 Create config.env by refering config.sample.env
@@ -238,17 +315,18 @@ $ npm install --production
 $ NODE_ENV=production npm run start
 ```
 
-## Heads up
+# Heads up ⚠️
 
-This app uses nodemailer for sending verification emails. App uses Gmail service for sending email.
+This app uses `nodemailer` for sending verification emails. App uses Gmail service for sending email.
 
 ### Steps
 
 1. Setup app to send emails by setting your gmail email and password inside config.env or by setting environment variables `NODE_MAILER_EMAIL = "youremail@gmail.com"` and `NODE_MAILER_PASSWORD = "yourpassword"`.
 2. By default Gmail blocks such services, to enable app to send emails using your account you need to toggle allow less secure apps to ON from [here](http://myaccount.google.com/lesssecureapps). \*\***This option is only available if 2 step verification is off.**
+   <br><br><br>
 
 #### POSTMAN Collection
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/6ee50b3a23ca2d229567)
 
-##### Deployed on Heroku - [https://kipplist.herokuapp.com/](https://kipplist.herokuapp.com/)
+#### Deployed on Heroku - [https://kipplist.herokuapp.com/](https://kipplist.herokuapp.com/)
