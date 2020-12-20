@@ -5,7 +5,7 @@ Feather API is a Nodejs Express REST API which provides CRUD functionality of Bl
 ### Base URL
 
 ```
-https://kipplist.herokuapp.com/
+https://feather-api.herokuapp.com/
 ```
 
 ## API ENDPOINTS
