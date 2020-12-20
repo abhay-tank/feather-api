@@ -359,6 +359,6 @@ This app uses `nodemailer` for sending verification emails. App uses Gmail servi
 
 #### POSTMAN Collection
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/6ee50b3a23ca2d229567)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/c72dbc4eb14e3fa52dd0#?env%5BJWT%20Auth%5D=W3sia2V5Ijoiand0IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfV0=)
 
 #### Deployed on Heroku - [https://kipplist.herokuapp.com/](https://kipplist.herokuapp.com/)
