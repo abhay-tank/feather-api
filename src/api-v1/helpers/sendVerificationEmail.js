@@ -82,7 +82,6 @@ const sendVerificationEmail = (userFirstName, userEmail, verificationURL) => {
       console.error(err);
       return err;
     } else {
-      console.log(info);
       return info;
     }
   });
