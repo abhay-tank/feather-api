@@ -5,7 +5,7 @@ Feather API is a Nodejs Express REST API which provides CRUD functionality of Bl
 ### Base URL
 
 ```
-https://feather-api.herokuapp.com/
+http://localhost:3000
 ```
 
 ## API ENDPOINTS
@@ -20,7 +20,7 @@ https://feather-api.herokuapp.com/
 /auth
 ```
 
-# POST - SignUp 😎✨
+# _POST_ - SignUp 😎✨
 
 ```
 /auth/signUp
@@ -64,13 +64,14 @@ avatarImage: avatar.png
 - ### User will be **not allowed** to **sign in** if he/she has not visited the **verification link** sent to him/her by Verification email.
 - ### For testing purpose use [temp mails](https://temp-mail.org/en/).
 - ### Once user has visited the Verification URL, his/her token will be verified and `accountVerified` will be toggled to `true`.
+- ### Gmail by default supports only inline styling of Email template. Use other email services to generate output as below.
 
 <p align="center">
   <img style="margin:2rem 0" src="readme-assets/verification-email.png"></img>
 </p>
   <br>
 
-# POST - SignIn 🧐
+# _POST_ - SignIn 🧐
 
 ```
 /auth/signIn
@@ -92,7 +93,7 @@ password: jOnKnowsN0Thing@404
 
 <br>
 
-# Sign Out ⭕️
+# _GET_ - Sign Out ⭕️
 
 ```
 /auth/signOut
@@ -102,7 +103,7 @@ password: jOnKnowsN0Thing@404
 
 <br>
 
-# Send Verification Email 📧
+# _GET_ - Send Verification Email 📧
 
 ```
 /auth/sendVerificationEmail/:userId
@@ -112,7 +113,7 @@ password: jOnKnowsN0Thing@404
 
 <br>
 
-# Verify User Token ✅
+# _GET_ - Verify User Token ✅
 
 ```
 /auth/verifyUserAccount/:verificationToken
@@ -123,7 +124,7 @@ password: jOnKnowsN0Thing@404
 
 <br><br>
 
-# Blogs
+# **Blogs**
 
 <p align="center" style="margin: 2rem 0">
   <img src="readme-assets/blogs-banner.gif" alt="blog-banner">
@@ -135,7 +136,7 @@ password: jOnKnowsN0Thing@404
 
 <br><br>
 
-# GET - Fetch Blogs 💿
+# _GET_ - Fetch Blogs 💿
 
 ```
 /blogs
@@ -163,7 +164,7 @@ password: jOnKnowsN0Thing@404
 
 > Both features can be used in combination as above.
 
-# Get Blog by blogId
+# _GET_ - Fetch Blog by blogId
 
 ```
 /blogs/:id
@@ -175,7 +176,7 @@ password: jOnKnowsN0Thing@404
 
 > **GET** Request on `/blogs/:id` with specified id as params will return blog with specific id.
 
-# POST - Create new Blog 💾
+# _POST_ - Create new Blog 💾
 
 ```
 /blogs
@@ -223,7 +224,7 @@ Since we're using `form-data` to take input, `form-data` only supports files and
   <img style="margin:2rem 0" src="readme-assets/create-blog.png"></img>
 </p>
 
-# PATCH - Update Blog ⚙️
+# _PATCH_ - Update Blog ⚙️
 
 ```
 /blogs/:id
@@ -268,7 +269,7 @@ blogRelatedLinks:
 
 <br><br>
 
-# DELETE - Delete Blog ❌
+# _DELETE_ - Delete Blog ❌
 
 ```
 /blogs/:id
@@ -349,16 +350,14 @@ $ NODE_ENV=production npm run start
 
 # Heads up ⚠️
 
-This app uses `nodemailer` for sending verification emails. App uses Gmail service for sending email.
+### This app uses `nodemailer` for sending verification emails. App uses Gmail service for sending email.
 
-### Steps
+### **_Steps -_**
 
-1. Setup app to send emails by setting your gmail email and password inside config.env or by setting environment variables `NODE_MAILER_EMAIL = "youremail@gmail.com"` and `NODE_MAILER_PASSWORD = "yourpassword"`.
-2. By default Gmail blocks such services, to enable app to send emails using your account you need to toggle allow less secure apps to ON from [here](http://myaccount.google.com/lesssecureapps). \*\***This option is only available if 2 step verification is off.**
-   <br><br><br>
+1. ### Setup app to send emails by setting your gmail email and password inside config.env or by setting environment variables `NODE_MAILER_EMAIL = "youremail@gmail.com"` and `NODE_MAILER_PASSWORD = "yourpassword"`.
+2. ### By default Gmail blocks such services, to enable app to send emails using your account you need to toggle allow less secure apps to ON from [here](http://myaccount.google.com/lesssecureapps). \*\***This option is only available if 2 step verification is off.**
+   <br><br>
 
 #### POSTMAN Collection
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/c72dbc4eb14e3fa52dd0#?env%5BJWT%20Auth%5D=W3sia2V5Ijoiand0IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfV0=)
-
-#### Deployed on Heroku - [https://kipplist.herokuapp.com/](https://kipplist.herokuapp.com/)
