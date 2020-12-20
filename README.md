@@ -12,9 +12,9 @@ https://kipplist.herokuapp.com/
 
 ## Auth 🔐
 
-<center style="margin: 2rem 0">
+<p align="center" style="margin: 2rem 0">
   <img src="readme-assets/auth-banner.gif">
-</center>
+</p>
 
 ```
 /auth
@@ -67,9 +67,9 @@ Since we're using `form-data` to take input, `form-data` only supports files and
 
 #### POSTMAN Request Example
 
-<center>
+<p align="center" style="margin: 2rem 0">
   <img style="margin:2rem 0" src="readme-assets/create-blog.png"></img>
-</center>
+</p>
 
 #### POST - SignIn 🧐
 
@@ -88,9 +88,9 @@ Since we're using `form-data` to take input, `form-data` only supports files and
 
 ## Blogs
 
-<center style="margin: 2rem 0">
+<p align="center" style="margin: 2rem 0">
   <img src="readme-assets/blogs-banner.gif" alt="blog-banner">
-</center>
+</p>
 
 - ##### For operations with todo endpoint, request header 🔑 must be present with Bearer Token as `authorization` generated using JWT token assigned to user upon signIn.
 - ##### This can be done by setting Bearer Token inside `authorization` of `req.headers`.
