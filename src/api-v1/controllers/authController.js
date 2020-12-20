@@ -34,7 +34,7 @@ const signUp = (req, res) => {
     .save()
     .then((result) => {
       if (!result) {
-        sendErrorResponse(
+        return sendErrorResponse(
           new ErrorResponse(500, "unsuccessful", "User not generated"),
           res
         );
@@ -101,12 +101,106 @@ const signIn = (req, res) => {
 // POST "/signOut"
 const signOut = (req, res) => {};
 
-// PATCH "/verifyUserAccount/:verificationToken"
+// GET "/verifyUserAccount/:verificationToken"
 const verifyUserAccount = (req, res) => {
-  res.send("Verfied");
+  User.findOne({ accountVerificationToken: req.params.verificationToken })
+    .then((result) => {
+      if (!result) {
+        throw new ErrorResponse(500, "unsuccessful", "User does not exists.");
+      } else {
+        if (result.accountVerified) {
+          throw new ErrorResponse(
+            400,
+            "unsuccessful",
+            "User already verified."
+          );
+        }
+        return User.findOneAndUpdate(
+          { userId: result.userId },
+          { accountVerified: true }
+        );
+      }
+    })
+    .then((userDoc) => {
+      if (!userDoc) {
+        throw new ErrorResponse(500, "unsuccessful", "Error verifying user.");
+      }
+      sendSuccessResponse(
+        200,
+        "successful",
+        "User verified successfully. Now you can signin.",
+        res
+      );
+    })
+    .catch((err) => {
+      console.error("Error verifying user", err);
+      if (err instanceof ErrorResponse) {
+        return sendErrorResponse(err, res);
+      } else {
+        return sendErrorResponse(
+          new ErrorResponse(500, "unsuccessful", err.toString()),
+          res
+        );
+      }
+    });
+};
+
+// GET
+const requestVerificationEmail = (req, res) => {
+  User.findOne({ userId: req.params.id })
+    .then((result) => {
+      if (!result) {
+        return sendErrorResponse(
+          new ErrorResponse(400, "unsuccessful", "User not found"),
+          res
+        );
+      } else {
+        const verificationURL =
+          req.protocol +
+          "://" +
+          req.get("host") +
+          "/auth/verifyUserAccount/" +
+          result.accountVerificationToken;
+        let verificationStatus = sendVerificationEmail(
+          result.firstName,
+          result.email,
+          verificationURL
+        );
+        if (verificationStatus instanceof Error) {
+          return sendErrorResponse(
+            new ErrorResponse(
+              500,
+              "unsuccessful",
+              "Error sending verification email"
+            ),
+            res
+          );
+        }
+        sendSuccessResponse(
+          200,
+          "successful",
+          "New verification email sent successfully.",
+          res
+        );
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      sendErrorResponse(
+        new ErrorResponse(400, "unsuccessful", err.toString()),
+        res
+      );
+    });
 };
 
 // PATCH "/changePassword/:passwordChangeToken"
 const changePassword = (req, res) => {};
 
-module.exports = { signUp, signIn, signOut, verifyUserAccount, changePassword };
+module.exports = {
+  signUp,
+  signIn,
+  signOut,
+  verifyUserAccount,
+  requestVerificationEmail,
+  changePassword,
+};

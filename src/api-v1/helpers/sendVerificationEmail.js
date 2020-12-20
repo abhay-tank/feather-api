@@ -24,7 +24,7 @@ const sendVerificationEmail = (userFirstName, userEmail, verificationURL) => {
     >
       <img
         style="width: 400px; pointer-events: none"
-        src="https://profism.com/assets/new/mobile-app-2.gif"
+        src="https://media.giphy.com/media/3ohzAgy79O8c10FQHK/giphy.gif"
         alt=""
       />
       <h1
@@ -36,7 +36,7 @@ const sendVerificationEmail = (userFirstName, userEmail, verificationURL) => {
       >
         Hii ${userFirstName}
       </h1>
-      <h3
+      <h2
         style="
           margin: 1rem 0;
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -44,7 +44,7 @@ const sendVerificationEmail = (userFirstName, userEmail, verificationURL) => {
         "
       >
         Please verify your account.
-      </h3>
+      </h2>
       <a
         style="
           display: block;
@@ -59,6 +59,20 @@ const sendVerificationEmail = (userFirstName, userEmail, verificationURL) => {
         "
         href="${verificationURL}"
         >Verify Account</a
+      >
+      <h3
+        style="
+          margin: 2rem 0;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          font-weight: normal;
+        "
+      >
+        OR Copy link and paste it your browser
+      </h3>
+      <a
+        style="text-align: center; word-break: break-all; width: 40%"
+        href="${verificationURL}"
+        >${verificationURL}</a
       >
     </div>
     `,

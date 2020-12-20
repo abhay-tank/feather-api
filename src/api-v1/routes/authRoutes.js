@@ -7,6 +7,7 @@ const {
   signIn,
   signOut,
   verifyUserAccount,
+  requestVerificationEmail,
   changePassword,
 } = require("../controllers/authController");
 authRouter
@@ -17,6 +18,7 @@ authRouter.route("/signOut").post(signOut);
 authRouter
   .route("/verifyUserAccount/:verificationToken")
   .get(verifyUserAccount);
+authRouter.route("/sendVerificationEmail/:id").get(requestVerificationEmail);
 authRouter.route("/changePassword/:passwordChangeToken").patch(changePassword);
 
 module.exports = authRouter;

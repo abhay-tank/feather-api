@@ -65,7 +65,7 @@ const userSchema = new mongoose.Schema(
         uniqid() +
         uniqid() +
         uniqid() +
-        Date.now(),
+        uniqid(),
       unique: true,
     },
   },
