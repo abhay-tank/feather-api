@@ -12,9 +12,9 @@ https://kipplist.herokuapp.com/
 
 ## Auth 🔐
 
-<p align="center">
-  <img src="https://media1.tenor.com/images/558c960cc4774a862e7ec8edd3575db3/tenor.gif?itemid=8686676">
-</p>
+<center style="margin: 2rem 0">
+  <img src="readme-assets/auth-banner.gif">
+</center>
 
 ```
 /auth
@@ -42,7 +42,7 @@ blogAuthor: Jon Doe
 
 blogTitle: Jon Doe's Life
 
-blogContent: "Jon Doe" and "Jane Doe" (for females) are multiple-use names that are used when the true name of a person is unknown or is being intentionally concealed.
+blogContent: Some Jon Doe's happy life.
 
 blogImages: [Upload Image Files]
 
@@ -65,8 +65,10 @@ Since we're using `form-data` to take input, `form-data` only supports files and
 }
 ```
 
+#### POSTMAN Request Example
+
 <center>
-![create-blog](readme-assets/create-blog.png)
+  <img style="margin:2rem 0" src="readme-assets/create-blog.png"></img>
 </center>
 
 #### POST - SignIn 🧐
@@ -86,9 +88,9 @@ Since we're using `form-data` to take input, `form-data` only supports files and
 
 ## Blogs
 
-<p align="center">
-  <img src="https://images.squarespace-cdn.com/content/v1/5832176e59cc687f522b111a/1539139163937-XC29GT63CCWCSE5TEMX8/ke17ZwdGBToddI8pDm48kLk6AiHk3VCjVyx0bXHY-wpZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpxFBdw5PXt5hvfhStZ7cvn0-MX5Omk9VkquqZzsoZn3ZMqf1OgXybDooXHev_mqy80/giphy-2.gif">
-</p>
+<center style="margin: 2rem 0">
+  <img src="readme-assets/blogs-banner.gif" alt="blog-banner">
+</center>
 
 - ##### For operations with todo endpoint, request header 🔑 must be present with Bearer Token as `authorization` generated using JWT token assigned to user upon signIn.
 - ##### This can be done by setting Bearer Token inside `authorization` of `req.headers`.
