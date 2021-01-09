@@ -11,6 +11,7 @@ const {
 const protectRoute = require("../middlewares/protectRoute");
 const createBlogId = require("../middlewares/createBlogId");
 const cloudinaryConfig = require("../middlewares/cloudinary.Config");
+const blogImagesUpload = require("../middlewares/cloudinary.BlogImages.Upload");
 blogsRouter
 	.route("/")
 	.get(protectRoute, getBlogs)
@@ -19,6 +20,7 @@ blogsRouter
 		createBlogId,
 		cloudinaryConfig,
 		uploadBlogImages.array("blogImages", 10),
+		blogImagesUpload,
 		createBlog
 	);
 blogsRouter

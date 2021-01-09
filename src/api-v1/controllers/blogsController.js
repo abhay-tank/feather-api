@@ -62,20 +62,13 @@ const getBlogs = async (req, res) => {
 const createBlog = (req, res) => {
 	let blogImages = [];
 	const requiredKeys = ["blogAuthor", "blogTitle", "blogContent"];
-	if (req.files) {
-		req.files.forEach((pic) => {
+	if (req.body.images.length) {
+		req.body.images.forEach((pic) => {
 			blogImages.push({
-				blogImageAlt: pic.originalname.split(".")[0],
-				blogImageURL:
-					req.protocol +
-					"://" +
-					req.get("host") +
-					"/" +
-					config.BLOG_IMAGES +
-					"/" +
-					req.body.blogId +
-					"/" +
-					pic.filename,
+				blogImageAlt: "blogImage",
+				blogImageURL: pic.secure_url,
+				blogImagePublicId: pic.public_id,
+				blogImageSignature: pic.signature,
 			});
 		});
 	}

@@ -10,10 +10,13 @@ const cloudinaryAvatarImageUpload = (req, res, next) => {
 		);
 	}
 	uploader
-		.upload("data:image/jpeg;base64," + req.file.buffer.toString("base64"), {
-			public_id: uniqid(),
-			folder: "users/" + req.headers.userId,
-		})
+		.upload(
+			`data:${req.file.mimetype};base64,` + req.file.buffer.toString("base64"),
+			{
+				public_id: uniqid(),
+				folder: "users/" + req.headers.userId,
+			}
+		)
 		.then((data) => {
 			req.body.image = data;
 			next();
