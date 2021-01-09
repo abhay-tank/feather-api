@@ -6,6 +6,7 @@ const { config } = require("../configuration/config");
 const { generateToken } = require("../helpers/jwtFunctions");
 const sendVerificationEmail = require("../helpers/sendVerificationEmail");
 const mongoose = require("mongoose");
+const { uploader } = require("cloudinary").v2;
 // POST "/signUp"
 const signUp = (req, res) => {
 	let newUserObject = {
@@ -15,19 +16,12 @@ const signUp = (req, res) => {
 		lastName: req.body.lastName || null,
 		password: req.body.password,
 	};
-	if (req.file) {
+	if (req.body.image) {
 		newUserObject.avatarImage = {
-			avatarAlt: req.file.originalname.split(".")[0],
-			avatarURL:
-				req.protocol +
-				"://" +
-				req.get("host") +
-				"/" +
-				config.USER_IMAGES +
-				"/" +
-				req.headers.userId +
-				"/" +
-				req.file.filename,
+			avatarAlt: "avatarImage",
+			avatarSignature: req.body.image.signature,
+			avatarPublicId: req.body.image.public_id,
+			avatarURL: req.body.image.secure_url,
 		};
 	}
 	const newUser = new User(newUserObject);
@@ -73,8 +67,21 @@ const signUp = (req, res) => {
 				sendSuccessResponse(200, "successful", user, res);
 			}
 		})
-		.catch((err) => {
+		.catch(async (err) => {
 			console.error(err);
+			try {
+				await uploader.destroy(req.image.public_id);
+			} catch (cloudinaryDeleteError) {
+				return sendErrorResponse(
+					new ErrorResponse(
+						500,
+						"unsuccessful",
+						cloudinaryDeleteError.toString()
+					),
+					res
+				);
+			}
+
 			if (err instanceof ErrorResponse) {
 				sendErrorResponse(err, res);
 			} else if (err instanceof mongoose.Error.ValidationError) {

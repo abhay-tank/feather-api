@@ -1,19 +1,19 @@
 const nodemailer = require("nodemailer");
 const { config } = require("../configuration/config");
 const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: config.NODE_MAILER_EMAIL,
-    pass: config.NODE_MAILER_PASSWORD,
-  },
+	service: "gmail",
+	auth: {
+		user: config.NODE_MAILER_EMAIL,
+		pass: config.NODE_MAILER_PASSWORD,
+	},
 });
 
 const sendVerificationEmail = (userFirstName, userEmail, verificationURL) => {
-  let verificationMail = {
-    from: config.NODE_MAILER_EMAIL,
-    to: userEmail,
-    subject: "Verify Account",
-    html: `
+	let verificationMail = {
+		from: config.NODE_MAILER_EMAIL,
+		to: userEmail,
+		subject: "Verify Account",
+		html: `
        <div
       style="
         display: flex;
@@ -76,15 +76,15 @@ const sendVerificationEmail = (userFirstName, userEmail, verificationURL) => {
       >
     </div>
     `,
-  };
-  return transporter.sendMail(verificationMail, (err, info) => {
-    if (err) {
-      console.error(err);
-      return err;
-    } else {
-      return info;
-    }
-  });
+	};
+	return transporter.sendMail(verificationMail, (err, info) => {
+		if (err) {
+			console.error(err);
+			return err;
+		} else {
+			return info;
+		}
+	});
 };
 
 module.exports = sendVerificationEmail;
