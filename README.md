@@ -5,7 +5,7 @@ Feather API is a Nodejs Express REST API which provides CRUD functionality of Bl
 ### Base URL
 
 ```
-http://localhost:3000
+https://feather-api.herokuapp.com/
 ```
 
 ## API ENDPOINTS
@@ -213,8 +213,8 @@ Since we're using `form-data` to take input, `form-data` only supports files and
 
 ```json
 {
-  "relatedBlogId": "blog-31jnfd2akiupg4k5",
-  "relatedBlogTitle": "Some other awesome blog"
+	"relatedBlogId": "blog-31jnfd2akiupg4k5",
+	"relatedBlogTitle": "Some other awesome blog"
 }
 ```
 
