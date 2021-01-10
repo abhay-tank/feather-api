@@ -3,7 +3,7 @@ const ErrorResponse = require("../models/ErrorResponse");
 const sendErrorResponse = require("./responses/sendErrorResponse");
 const uniqid = require("uniqid");
 const cloudinaryAvatarImageUpload = (req, res, next) => {
-	if (!req.file.buffer) {
+	if (!req.file.buffer || req.file === undefined) {
 		return sendErrorResponse(
 			new ErrorResponse(400, "unsuccessful", "Profile Image not uploaded"),
 			res
