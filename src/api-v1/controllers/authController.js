@@ -68,30 +68,21 @@ const signUp = (req, res) => {
 			}
 		})
 		.catch(async (err) => {
-			console.error(err);
-			try {
-				await uploader.destroy(req.image.public_id);
-			} catch (cloudinaryDeleteError) {
-				return sendErrorResponse(
-					new ErrorResponse(
-						500,
-						"unsuccessful",
-						cloudinaryDeleteError.toString()
-					),
-					res
-				);
-			}
-
 			if (err instanceof ErrorResponse) {
-				sendErrorResponse(err, res);
+				return sendErrorResponse(err, res);
 			} else if (err instanceof mongoose.Error.ValidationError) {
 				console.error(err);
 				return sendErrorResponse(
 					new ErrorResponse(400, "unsuccessful", err.errors.toString()),
 					res
 				);
+			} else if (err && err.code === 11000) {
+				return sendErrorResponse(
+					new ErrorResponse(406, "unsuccessful", "User already exists."),
+					res
+				);
 			} else {
-				sendErrorResponse(
+				return sendErrorResponse(
 					new ErrorResponse(500, "unsuccessful", err.toString()),
 					res
 				);
