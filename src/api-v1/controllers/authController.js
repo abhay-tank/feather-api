@@ -85,6 +85,7 @@ const signUp = (req, res) => {
 			if (err instanceof ErrorResponse) {
 				sendErrorResponse(err, res);
 			} else if (err instanceof mongoose.Error.ValidationError) {
+				console.error(err);
 				return sendErrorResponse(
 					new ErrorResponse(400, "unsuccessful", err.errors.toString()),
 					res
