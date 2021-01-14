@@ -6,7 +6,7 @@ const { config } = require("../configuration/config");
 const { generateToken } = require("../helpers/jwtFunctions");
 const sendVerificationEmail = require("../helpers/sendVerificationEmail");
 const mongoose = require("mongoose");
-const { uploader } = require("cloudinary").v2;
+
 // POST "/signUp"
 const signUp = (req, res) => {
 	let newUserObject = {
@@ -47,9 +47,7 @@ const signUp = (req, res) => {
 					}
 				});
 				const verificationURL =
-					req.protocol +
-					"://" +
-					req.get("host") +
+					config.FRONTEND_URL +
 					"/auth/verifyUserAccount/" +
 					result.accountVerificationToken;
 				let verificationStatus = sendVerificationEmail(
@@ -133,7 +131,7 @@ const signIn = (req, res) => {
 	User.findOne({ email: email })
 		.then(async (userDoc) => {
 			if (!userDoc) {
-				throw new ErrorResponse(400, "unsuccessful", "User not found");
+				throw new ErrorResponse(404, "unsuccessful", "User not found");
 			}
 			const compareResult = await User.comparePasswords(
 				userDoc.password,
@@ -222,7 +220,7 @@ const verifyUserAccount = (req, res) => {
 	User.findOne({ accountVerificationToken: req.params.verificationToken })
 		.then((result) => {
 			if (!result) {
-				throw new ErrorResponse(500, "unsuccessful", "User does not exists.");
+				throw new ErrorResponse(404, "unsuccessful", "User does not exists.");
 			} else {
 				if (result.accountVerified) {
 					throw new ErrorResponse(
@@ -233,7 +231,8 @@ const verifyUserAccount = (req, res) => {
 				}
 				return User.findOneAndUpdate(
 					{ userId: result.userId },
-					{ accountVerified: true }
+					{ accountVerified: true },
+					{ new: true }
 				);
 			}
 		})
@@ -241,12 +240,23 @@ const verifyUserAccount = (req, res) => {
 			if (!userDoc) {
 				throw new ErrorResponse(500, "unsuccessful", "Error verifying user.");
 			}
-			sendSuccessResponse(
-				200,
-				"successful",
-				"User verified successfully. Now you can signin.",
-				res
-			);
+			let showKeys = [
+				"userId",
+				"email",
+				"firstName",
+				"lastName",
+				"avatarImage",
+				"accountVerified",
+				"createdAt",
+				"updatedAt",
+			];
+			let verifiedUser = {};
+			showKeys.forEach((key) => {
+				if (userDoc[key]) {
+					verifiedUser[key] = userDoc[key];
+				}
+			});
+			sendSuccessResponse(200, "successful", verifiedUser, res);
 		})
 		.catch((err) => {
 			console.error(err);
@@ -274,9 +284,7 @@ const requestVerificationEmail = (req, res) => {
 				throw new ErrorResponse(400, "unsuccessful", "User not found");
 			} else {
 				const verificationURL =
-					req.protocol +
-					"://" +
-					req.get("host") +
+					config.FRONTEND_URL +
 					"/auth/verifyUserAccount/" +
 					result.accountVerificationToken;
 				let verificationStatus = sendVerificationEmail(

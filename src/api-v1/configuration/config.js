@@ -9,6 +9,7 @@ const config = {
 	CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
 	CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
 	CLOUDINARY_SECRET: process.env.CLOUDINARY_SECRET,
+	FRONTEND_URL: process.env.FRONTEND_URL,
 };
 
 module.exports = { config };
