@@ -8,6 +8,7 @@ const {
 	signOut,
 	verifyUserAccount,
 	requestVerificationEmail,
+	verifyJWT,
 } = require("../controllers/authController");
 const authIsUserSignedIn = require("../middlewares/authIsUserSignedIn");
 const protectRoute = require("../middlewares/protectRoute");
@@ -31,5 +32,6 @@ authRouter
 	.route("/verifyUserAccount/:verificationToken")
 	.get(verifyUserAccount);
 authRouter.route("/sendVerificationEmail/:id").get(requestVerificationEmail);
+authRouter.route("/verifyJWT").get(verifyJWT);
 
 module.exports = authRouter;

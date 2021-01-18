@@ -3,7 +3,7 @@ const ErrorResponse = require("../models/ErrorResponse");
 const sendErrorResponse = require("../middlewares/responses/sendErrorResponse");
 const sendSuccessResponse = require("../middlewares/responses/sendSuccessResponse");
 const { config } = require("../configuration/config");
-const { generateToken } = require("../helpers/jwtFunctions");
+const { generateToken, verifyToken } = require("../helpers/jwtFunctions");
 const sendVerificationEmail = require("../helpers/sendVerificationEmail");
 const mongoose = require("mongoose");
 
@@ -320,10 +320,76 @@ const requestVerificationEmail = (req, res) => {
 		});
 };
 
+const verifyJWT = async (req, res) => {
+	if (!req.headers.authorization) {
+		return sendErrorResponse(
+			new ErrorResponse(401, "Unsuccessful", "Please login or signup"),
+			res
+		);
+	}
+	let jwtToken = req.headers.authorization.split(" ")[1];
+	let decoded;
+	try {
+		decoded = await verifyToken(jwtToken, config.JWT_SECRET);
+		console.log("decoded token", decoded);
+	} catch (err) {
+		console.error("Decoding Error", err);
+		return sendErrorResponse(
+			new ErrorResponse(401, "unsuccessful", "Invalid Token"),
+			res
+		);
+	}
+	User.findOne({ email: decoded.email })
+		.then((result) => {
+			if (result) {
+				if (!result.accountVerified) {
+					throw new ErrorResponse(
+						401,
+						"unsuccessful",
+						"Please verify your account first"
+					);
+				}
+				let showKeys = [
+					"userId",
+					"email",
+					"firstName",
+					"lastName",
+					"avatarImage",
+					"accountVerified",
+					"createdAt",
+					"updatedAt",
+				];
+				let signedInUser = {};
+				showKeys.forEach((key) => (signedInUser[key] = result[key]));
+				return sendSuccessResponse(
+					"202",
+					"successful",
+					{
+						jwt: jwtToken,
+						user: signedInUser,
+					},
+					res
+				);
+			} else {
+				throw new ErrorResponse(401, "unsuccessful", "Signup or SignIn first");
+			}
+		})
+		.catch((err) => {
+			console.error(err);
+			if (err instanceof ErrorResponse) {
+				return sendErrorResponse(err, res);
+			}
+			return sendErrorResponse(
+				new ErrorResponse(500, "unsuccessful", err.toString()),
+				res
+			);
+		});
+};
 module.exports = {
 	signUp,
 	signIn,
 	signOut,
 	verifyUserAccount,
 	requestVerificationEmail,
+	verifyJWT,
 };
