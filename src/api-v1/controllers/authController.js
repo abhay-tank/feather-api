@@ -331,7 +331,6 @@ const verifyJWT = async (req, res) => {
 	let decoded;
 	try {
 		decoded = await verifyToken(jwtToken, config.JWT_SECRET);
-		console.log("decoded token", decoded);
 	} catch (err) {
 		console.error("Decoding Error", err);
 		return sendErrorResponse(
