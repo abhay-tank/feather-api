@@ -2,7 +2,7 @@ const Blog = require("../models/Blog");
 const ErrorResponse = require("../models/ErrorResponse");
 const sendErrorResponse = require("../middlewares/responses/sendErrorResponse");
 const sendSuccessResponse = require("../middlewares/responses/sendSuccessResponse");
-const { config } = require("../configuration/config");
+const mongoose = require("mongoose");
 const validBlogKeys = [
 	"blogId",
 	"blogAuthor",
@@ -139,8 +139,13 @@ const createBlog = (req, res) => {
 			if (err instanceof ErrorResponse) {
 				return sendErrorResponse(err, res);
 			} else if (err instanceof mongoose.Error.ValidationError) {
+				let errorString = "";
+				Object.keys(err.errors).forEach((key) => {
+					errorString = errorString + err.errors[key] + ". ";
+				});
+				console.error("ERROR STRING ===> ", errorString);
 				return sendErrorResponse(
-					new ErrorResponse(400, "unsuccessful", err.errors.toString()),
+					new ErrorResponse(400, "unsuccessful", errorString),
 					res
 				);
 			} else {
