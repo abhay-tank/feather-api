@@ -138,6 +138,11 @@ const createBlog = (req, res) => {
 			console.error(err);
 			if (err instanceof ErrorResponse) {
 				return sendErrorResponse(err, res);
+			} else if (err instanceof mongoose.Error.ValidationError) {
+				return sendErrorResponse(
+					new ErrorResponse(400, "unsuccessful", err.errors.toString()),
+					res
+				);
 			} else {
 				return sendErrorResponse(
 					new ErrorResponse(500, "unsuccessful", err.toString()),
